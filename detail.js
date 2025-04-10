@@ -92,13 +92,16 @@ const predpoved = [
     },
 ];
 
-predpoved.forEach((den) => {
-    document.querySelector("main").innerHTML+=`
-    <div class="pocasi-card">
-        <h2>${den.den}</h2>
-        <p>Teplota: ${den.denni_teplota}°C</p>
-        <p>Stav: ${den.stav_pocasi}</p>
-        <a href="detail.html#${den.id}">Detail počací</a>
-    </div>
-    `
-})
+const pocasiId = window.location.hash.slice(1)
+const pocasi = predpoved.find((den) => den.id === pocasiId)
+
+document.querySelector("main").innerHTML += `
+    <article>
+        <h2>${pocasi.den}</h2>
+        <p>Teplota ráno: ${pocasi.ranni_teplota}°C</p>
+        <p>Teplota odpoledne: ${pocasi.odpoledni_teplota}°C</p>
+        <p>Teplota večer: ${pocasi.vecerni_teplota}°C</p>
+        <p>Stav: ${pocasi.stav_pocasi}</p>
+        <a href="index.html">Zpět na hlavní stránku</a>
+    </article>
+`
